@@ -6,18 +6,17 @@ website:
 
   navbar: 
     search: true
-    logo: png/Kyouiku-Torikera.png
     title: false
     pinned: true
     background: "#ff751f"
 
     left:
       - text: "Home"
-        href: "https://yamachan050125.github.io/"
+        href: "https://yamachan050125.github.io/Kyouiku-gaku"
       - text: "about"
         href: "https://yamachan050125.github.io/about"
-      - text: "社会科授業資料"
-        href: "https://yamachan050125.github.io/Syakaika-Siryou/"
+      - text: "HP"
+        href: "https://yamachan050125.github.io/"
         
 format:
   html:

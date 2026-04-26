@@ -4,6 +4,8 @@ title: "教育のおもちゃばこ"
 
 ![](png\Logo-Kyouiku-Omochabako.png)
 
+このサイトでは、教育学関係の知識を備忘録として保存することを目的とします。
+
 ## 授業資料
 授業資料の公開は、以下のサイトで行っています。
 
@@ -11,3 +13,5 @@ title: "教育のおもちゃばこ"
 
 ## 経歴等
 [about](https://yamachan050125.github.io/about)
+
+[HP やまちゃんのおもちゃばこ](https://yamachan050125.github.io/)
