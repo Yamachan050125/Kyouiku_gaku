@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "教育のおもちゃばこ"
+
+  navbar: 
+    search: true
+    logo: png/Kyouiku-Torikera.png
+    title: false
+    pinned: true
+    background: "#ff751f"
+
+    left:
+      - text: "Home"
+        href: "https://yamachan050125.github.io/"
+      - text: "about"
+        href: "https://yamachan050125.github.io/about"
+      - text: "社会科授業資料"
+        href: "https://yamachan050125.github.io/Syakaika-Siryou/"
+        
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+    favicon: png/favicon.ico
+
+lang: ja
