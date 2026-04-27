@@ -1,0 +1,21 @@
+---
+title: "生徒指導論トップページ"
+subtitle: "Student Guidance Theory"
+format: 
+  html: 
+    toc: true
+    number-sections: true
+lang: ja
+---
+
+## 資料一覧
+### 生徒指導提要
+
+[生徒指導の意義](jissen_chui.qmd)
+
+
+
+
+---
+
+[トップページに戻る](https://yamachan050125.github.io/Kyouiku-gaku/)

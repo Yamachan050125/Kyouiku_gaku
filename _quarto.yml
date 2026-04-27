@@ -15,8 +15,6 @@ website:
         href: "https://yamachan050125.github.io/Kyouiku-gaku"
       - text: "about"
         href: "https://yamachan050125.github.io/about"
-      - text: "HP"
-        href: "https://yamachan050125.github.io/"
         
 format:
   html:
