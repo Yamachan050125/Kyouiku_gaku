@@ -1,24 +1,31 @@
 ---
-title: "教育のおもちゃばこ"
+title: ""
 ---
 
 ![](png\Logo-Kyouiku-Omochabako.png)
 
 このサイトでは、教育学関係の知識を備忘録として保存することを目的とします。
 
-## 教育学資料
+## 生徒指導論
 
-[生徒指導論 -生徒指導関係の資料をまとめたページです-](seitosidou\index.qmd)
+生徒指導提要に基づき、生徒指導の実践上の注意や手法をまとめます。
+
+[生徒指導論トップページ](seitosidou\index.qmd)
 
 
 
 
-## 授業資料
-社会科の授業資料の公開は、以下のサイトで行っています。
+
+
+
+---
+
+## 社会科の授業資料
+授業資料の公開は、以下のサイトで行っています。
 
 [社会科のおもちゃばこ](https://yamachan050125.github.io/Syakaika-Siryou/)
 
-## 経歴・HP等
+## 経歴等
 [about](https://yamachan050125.github.io/about)
 
-[著者HP やまちゃんのおもちゃばこ](https://yamachan050125.github.io/)
+[HP やまちゃんのおもちゃばこ](https://yamachan050125.github.io/)
