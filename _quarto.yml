@@ -15,6 +15,9 @@ website:
         href: "https://yamachan050125.github.io/Kyouiku-gaku"
       - text: "about"
         href: "https://yamachan050125.github.io/about"
+      - text: "試験対策"
+        href: "https://yamachan050125.github.io/Kyouiku-gaku/Kyousai/index.qmd"
+          
         
 format:
   html:

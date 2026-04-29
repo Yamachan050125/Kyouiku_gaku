@@ -1,0 +1,15 @@
+---
+title: "教採合格への道"
+format:
+  html:
+    toc: true
+---
+
+## 面接対策
+
+[面接対策　資料](/Kyousai/mensestu.qmd)へ
+
+
+
+---
+[トップページへ戻る](index.qmd)
