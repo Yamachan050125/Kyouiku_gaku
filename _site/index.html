@@ -92,6 +92,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="https://yamachan050125.github.io/about"> 
 <span class="menu-text">about</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://yamachan050125.github.io/Kyouiku-gaku/Kyousai/index.qmd"> 
+<span class="menu-text">試験対策</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -109,6 +113,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#生徒指導論" id="toc-生徒指導論" class="nav-link active" data-scroll-target="#生徒指導論">生徒指導論</a></li>
+  <li><a href="#前期中等教育指導論" id="toc-前期中等教育指導論" class="nav-link" data-scroll-target="#前期中等教育指導論">前期中等教育指導論</a></li>
   <li><a href="#社会科の授業資料" id="toc-社会科の授業資料" class="nav-link" data-scroll-target="#社会科の授業資料">社会科の授業資料</a></li>
   <li><a href="#経歴等" id="toc-経歴等" class="nav-link" data-scroll-target="#経歴等">経歴等</a></li>
   </ul>
@@ -126,6 +131,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="生徒指導論">生徒指導論</h2>
 <p>生徒指導提要に基づき、生徒指導の実践上の注意や手法をまとめます。</p>
 <p><a href="./seitosidou/index.html">生徒指導論トップページ</a></p>
+</section>
+<section id="前期中等教育指導論" class="level2">
+<h2 class="anchored" data-anchor-id="前期中等教育指導論">前期中等教育指導論</h2>
+<p>中学校の教育現場での知見をまとめます。</p>
+<p><a href="./sidouhou/index.html">前期中等教育指導論</a></p>
 <hr>
 </section>
 <section id="社会科の授業資料" class="level2">
@@ -215,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Yamachan050125\.github\.io\/Kyouiku_gaku\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

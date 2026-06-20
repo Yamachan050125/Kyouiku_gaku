@@ -12,9 +12,11 @@ title: ""
 
 [生徒指導論トップページ](seitosidou\index.qmd)
 
+## 前期中等教育指導論
 
+中学校の教育現場での知見をまとめます。
 
-
+[前期中等教育指導論](sidouhou/index.qmd)
 
 
 

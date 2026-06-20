@@ -1,0 +1,24 @@
+---
+title: "前期中等教育指導論"
+format: 
+  html: 
+    toc: true
+    number-sections: false
+lang: ja
+---
+
+このページでは、筆者が中学校の生徒を指導をしてきて感じたことや、指導に関する資料をまとめていく。
+
+## 資料一覧
+
+[価値付けの意義と方法](kachiduke.qmd)
+
+[見通しを持てるようにする](mitoosi.qmd)
+
+[解説は生徒の思考を奪う](kaisetu.qmd)
+
+
+
+---
+
+[トップページに戻る](https://yamachan050125.github.io/Kyouiku-gaku/)
