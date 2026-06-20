@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://Yamachan050125.github.io/Kyouiku_gaku/sidouhou/mitoosi.html</loc>
+    <lastmod>2026-06-20T13:41:54.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Yamachan050125.github.io/Kyouiku_gaku/sidouhou/kachiduke.html</loc>
+    <lastmod>2026-06-20T13:36:35.641Z</lastmod>
+  </url>
+  <url>
     <loc>https://Yamachan050125.github.io/Kyouiku_gaku/seitosidou/jissen_chui.html</loc>
     <lastmod>2026-04-27T04:00:39.876Z</lastmod>
   </url>
@@ -10,7 +18,7 @@
   </url>
   <url>
     <loc>https://Yamachan050125.github.io/Kyouiku_gaku/index.html</loc>
-    <lastmod>2026-04-29T07:32:42.158Z</lastmod>
+    <lastmod>2026-06-20T15:25:03.393Z</lastmod>
   </url>
   <url>
     <loc>https://Yamachan050125.github.io/Kyouiku_gaku/Kyousai/index.html</loc>
@@ -19,5 +27,13 @@
   <url>
     <loc>https://Yamachan050125.github.io/Kyouiku_gaku/seitosidou/index.html</loc>
     <lastmod>2026-04-27T03:57:53.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Yamachan050125.github.io/Kyouiku_gaku/sidouhou/index.html</loc>
+    <lastmod>2026-06-20T15:25:08.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Yamachan050125.github.io/Kyouiku_gaku/sidouhou/kaisetu.html</loc>
+    <lastmod>2026-06-20T15:23:26.153Z</lastmod>
   </url>
 </urlset>
