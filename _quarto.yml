@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "教育のおもちゃばこ"
+  title: "学校教育のおもちゃばこ"
 
   navbar: 
     search: true
@@ -12,11 +12,9 @@ website:
 
     left:
       - text: "Home"
-        href: "https://yamachan050125.github.io/Kyouiku-gaku"
+        href: "https://yamachan050125.github.io/Kyouiku_gaku/"
       - text: "about"
         href: "https://yamachan050125.github.io/about"
-      - text: "試験対策"
-        href: "https://yamachan050125.github.io/Kyouiku-gaku/Kyousai/index.qmd"
           
         
 format:
