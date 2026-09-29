@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yamato Fujii">
 
-<title>解説は生徒の思考を奪う – 学校教育のおもちゃばこ</title>
+<title>第１講ー１ Pythonの仕組み メモリの取り方 – 学校教育のおもちゃばこ</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -113,9 +149,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#解説の有効性" id="toc-解説の有効性" class="nav-link active" data-scroll-target="#解説の有効性"><span class="header-section-number">1</span> 解説の有効性</a></li>
-  <li><a href="#解説の問題点" id="toc-解説の問題点" class="nav-link" data-scroll-target="#解説の問題点"><span class="header-section-number">2</span> 解説の問題点</a></li>
-  <li><a href="#解決法の一例" id="toc-解決法の一例" class="nav-link" data-scroll-target="#解決法の一例"><span class="header-section-number">3</span> 解決法の一例</a></li>
+  <li><a href="#what-is-python" id="toc-what-is-python" class="nav-link active" data-scroll-target="#what-is-python">What is Python?</a>
+  <ul class="collapse">
+  <li><a href="#マシン語と高級言語" id="toc-マシン語と高級言語" class="nav-link" data-scroll-target="#マシン語と高級言語">マシン語と高級言語</a></li>
+  <li><a href="#コンパイル言語とインタプリター言語" id="toc-コンパイル言語とインタプリター言語" class="nav-link" data-scroll-target="#コンパイル言語とインタプリター言語">コンパイル言語とインタプリター言語</a></li>
+  <li><a href="#オブジェクト指向言語" id="toc-オブジェクト指向言語" class="nav-link" data-scroll-target="#オブジェクト指向言語">オブジェクト指向言語</a></li>
+  <li><a href="#節のまとめ" id="toc-節のまとめ" class="nav-link" data-scroll-target="#節のまとめ">1節のまとめ</a></li>
+  </ul></li>
+  <li><a href="#pythonにおける変数" id="toc-pythonにおける変数" class="nav-link" data-scroll-target="#pythonにおける変数">Pythonにおける変数</a>
+  <ul class="collapse">
+  <li><a href="#pythonの変数は箱ではなく名札" id="toc-pythonの変数は箱ではなく名札" class="nav-link" data-scroll-target="#pythonの変数は箱ではなく名札">Pythonの変数は箱ではなく名札</a></li>
+  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -124,13 +169,20 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">解説は生徒の思考を奪う</h1>
+<h1 class="title">第１講ー１　Pythonの仕組み メモリの取り方</h1>
+<p class="subtitle lead">Python勉強会</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">作者</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yamato Fujii </p>
+          </div>
+  </div>
     
   
     
@@ -141,49 +193,186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="解説の有効性" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="解説の有効性"><span class="header-section-number">1</span> 解説の有効性</h2>
-<p>授業において、資料の解説などを行うことも多いと思う。解説は、生徒の理解を助けることはもちろんのこと、解説の内容によっては、生徒の興味を引きだし、関心を高めることにつながる。</p>
-<p>教員としても、知っていることは生徒に伝えたいという気持ちがあると思う。特に、教材研究をきっちりとされている先生ほど、いろんなことを知っているので、ついつい生徒に話したくて、解説してしまうことも多いであろう。</p>
-<p>社会科教員は、もはや性といってよいほどその症状が現れる。</p>
-</section>
-<section id="解説の問題点" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="解説の問題点"><span class="header-section-number">2</span> 解説の問題点</h2>
-<p>このような状況を継続すると…</p>
-<ul>
-<li>学力高位層やその教科に興味のある子どもには解説の効果があるが、学力低位層やその教科に興味がない子どもには、退屈で言葉が耳を通り抜けるだけの時間になり、クラス内の学力格差が開く。</li>
-<li>生徒から出てもおかしくないような意見を教員が解説で奪ってしまい、生徒から引き出せたはずの学びをつぶしてしまう。</li>
-<li>生徒が、どんな意見でも先生が解説してくれるという安心感から、あまり主体的に考えず、テキトーな意見を出し始める。</li>
-</ul>
-<p>難しい言葉や誰一人として生徒がわかっていないような言葉を解説することは決して間違っている行為ではない。しかし、同時に<strong>生徒の思考を奪ってはいないかというのは、常に念頭に置いて授業を行っていくことが大切</strong>である。</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-重要
+<span class="screen-reader-only">重要</span>目標
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>授業の主役は教師ではなく生徒</strong>である。このことは決して忘れてはならないと思う。</p>
-<p>教師が話し続ける授業は、教師の満足感は高いうえ、とても楽な授業だと思う。しかし、それは生徒が育つ機会を失わせてしまう。<strong>知識だけではない</strong>という学校の意義をよく考えよう。</p>
+<p>Pythonの仕組みと他言語との違いを理解しよう。</p>
+</div>
+</div>
+<section id="what-is-python" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-python">What is Python?</h2>
+<p>Pythonは、ソフトウェアを動かすプログラムという指示書で使用する言語である。その特徴は以下の文に集約できる。</p>
+<blockquote class="blockquote">
+<p>Pythonは,高水準で動的な,インタプリタ―型のオブジェクト指向プログラミング言語です。(James R. (2021))</p>
+</blockquote>
+<p>なんだこの文章は。何を言っているかわからないと思うので解説しよう。</p>
+<section id="マシン語と高級言語" class="level3">
+<h3 class="anchored" data-anchor-id="マシン語と高級言語">マシン語と高級言語</h3>
+<p>コンピュータは0か1でしか理解できない。このコンピュータのための0と1でしか書かれていない言語を<strong>マシン語</strong>という。</p>
+<p>しかし、人間は0か1のみを使って言語を書くことは難しい。意味わからん。ということで、人間用にしたマシン語のことを<strong>高級言語</strong>（または<strong>高水準言語</strong>）という。</p>
+</section>
+<section id="コンパイル言語とインタプリター言語" class="level3">
+<h3 class="anchored" data-anchor-id="コンパイル言語とインタプリター言語">コンパイル言語とインタプリター言語</h3>
+<p>では、上記の文章を読み解くその１　「インタプリター言語」について解説していこう。</p>
+<p>コンピュータは高級言語そのままは読み取れない。つまり、高級言語からマシン語への<strong>翻訳</strong>が必要である。この翻訳の仕方の違いが、<strong>コンパイル言語</strong>と<strong>インタプリタ―言語</strong>の違いである。</p>
+<p><strong>コンパイル言語</strong>は、コードを実行する際に、高級言語から一度マシン語へ一括翻訳（<strong>コンパイル</strong>）し、実行形式に直してから実行する仕組みである。Java, C#, C++などの言語は、このコンパイル言語にあたる。</p>
+<p>一方、Pythonが採用する<strong>インタプリター言語</strong>は、翻訳は必要であるものの、これをライターが意識する必要がない。つまり、プログラムを呼び出すと逐次自動で翻訳と実行をしてくれる言語なのである。他にもJavaScriptなどもこの形式である。この言語は、実行の際にいちいちコンパイルする必要がないので、デバックが簡単。つまり、<strong>トライアンドエラーでの開発に有用</strong>なのである。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://it-infomation.com/wp-content/uploads/2024/11/adf0fcda8b0beb55795848b6a20d8b5a.png" class="img-fluid figure-img"></p>
+<figcaption>IT-Infomation コンパイラ言語とスクリプト言語（インタプリタ言語）とは？種類や違いなどを解説！（https://it-infomation.com/compiler-vs-scripting-language/）より</figcaption>
+</figure>
+</div>
+<p>一つ文章をよみとけたね。次いきましょー！</p>
+</section>
+<section id="オブジェクト指向言語" class="level3">
+<h3 class="anchored" data-anchor-id="オブジェクト指向言語">オブジェクト指向言語</h3>
+<p>では、上記の文章を読み解くその２　「オブジェクト指向言語」について解説していこう。</p>
+<p><strong>オブジェクト指向</strong>とは</p>
+<blockquote class="blockquote">
+<p>プログラムのなかで扱う対象をモノ（オブジェクト）に例え、オブジェクトの組み合わせによってアプリを形成していく手法のこと（山田（2025））</p>
+</blockquote>
+<p>パワーポイントで言うならば、スライドを作る時に、テキストボックスとか、図形とか貼り付けてつくる。この一つ一つが<strong>オブジェクト</strong>という。</p>
+<p>ほとんどの言語は、このオブジェクト指向言語なので、そう気にする必要はない。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>厳密には、Pythonは純粋なオブジェクト指向言語ではない。様々な思想（<strong>パラダイム</strong>）を組み合わせているため、<strong>マルチパラダイム</strong>な言語とも言える。</p>
 </div>
 </div>
 </section>
-<section id="解決法の一例" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="解決法の一例"><span class="header-section-number">3</span> 解決法の一例</h2>
-<p>解決の方法として一例を示す。ただし、筆者の専門は社会科であるため、社会科の授業での取り組みを示す。他の教科でも応用ができるであろう。</p>
+<section id="節のまとめ" class="level3">
+<h3 class="anchored" data-anchor-id="節のまとめ">1節のまとめ</h3>
+<p>よし。これで</p>
 <blockquote class="blockquote">
-<p>（中学地理の授業にて）</p>
-<p>生徒「経済特区を作っていたんだと思います。」</p>
-<p>教師「みんな意味わかった？経済特区というワードが出てきましたね。誰か経済特区というワードの意味を説明してほしいな（誰か生徒のなかで説明する人を当てる）」</p>
+<p>Pythonは,高水準で動的な,インタプリタ―型のオブジェクト指向プログラミング言語です。(James R. (2021))</p>
 </blockquote>
-<p>これは生徒に説明させる例である。教員が経済特区を説明してしまっても構わないが、既に読み取っている生徒もいるであろう。生徒に説明させることで、その生徒の表現力を高めると共に、自己肯定感も高める。</p>
-<hr>
-<p><a href="https://yamachan050125.github.io/Kyouiku-gaku/">トップページに戻る</a></p>
+<p>という文章の謎が解けたであろう。</p>
+<p>つまり、<strong>高水準でとっても使いやすいトライアンドエラーのしやすい、モノを組み合わせた方式の言語</strong>ということだ。</p>
+<p>しかも、Pythonは、初学者にも使いやすいように設計された言語なのである。</p>
+<p>例えば、Hallo World! と打つとき</p>
+<p>Javaの場合</p>
+<pre class="{java}"><code>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hallo World!");
+    }
+}</code></pre>
+<p>長すぎる。でも、Pythonの場合、</p>
+<div id="6d2f7e3f" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hallo World!"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hallo World!</code></pre>
+</div>
+</div>
+<p>これは使わない手はない。</p>
+</section>
+</section>
+<section id="pythonにおける変数" class="level2">
+<h2 class="anchored" data-anchor-id="pythonにおける変数">Pythonにおける変数</h2>
+<p>基本文法を学ぶ前に、Pythonで重要な落とし穴があるので、そこを学ぶこととする。</p>
+<section id="pythonの変数は箱ではなく名札" class="level3">
+<h3 class="anchored" data-anchor-id="pythonの変数は箱ではなく名札">Pythonの変数は箱ではなく名札</h3>
+<p>Pythonにおけるすべてのデータは<strong>オブジェクト</strong>である。ここが肝で、CやJavaだと<strong>変数＝データを保管する箱</strong>なのだが、Pythonにおいては、変数はオブジェクトなのでただの<strong>名札</strong>なのである。</p>
+<p>例えば</p>
+<div id="8396db83" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 10というオブジェクトを作り、aという名札を貼る</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>メモリ上にまず「10というオブジェクト（実体）」が作られ、そこに「a」という名札を貼り付ける（参照する）。</p>
+<p>変数名はそれに貼られたタグに過ぎない。つまり、<strong>名札を二つ以上つけられる</strong>のである。</p>
+<div id="e357a1f3" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(a)) </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(b)) </span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1984823101136
+1984823101136</code></pre>
+</div>
+</div>
+<p>↖数値が同じになっているはずだ。</p>
+</section>
+<section id="問題点" class="level3">
+<h3 class="anchored" data-anchor-id="問題点">問題点</h3>
+<p>これによって発生する問題が、<strong>中身を直接書き換えられるデータ型の場合に、他の変数まで連動して書き換わってしまう</strong>問題である。</p>
+<p>数値や文字列は書き変わらないようになっている。つまり、<strong>数値や文字列への名札は一個しかつけられない</strong>状態にある。そのため、この場合は事故にはならない。</p>
+<div id="3cb00715" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">20</span>  <span class="co"># xに20を代入（xの名札を別の「20」に貼り替えただけ）</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)  <span class="co"># 10のまま（yは元の10を指し続けている）</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10</code></pre>
+</div>
+</div>
+<p>正確には、</p>
+<p><code>int</code>　<code>float</code>　<code>str</code>　<code>tuple</code>　<code>frozenset</code></p>
+<p>以上は、変わるように見えて実際には新しいオブジェクトを生成しているだけ。</p>
+<p>しかし、<strong>リストや辞書は書き変わる。</strong></p>
+<div id="64da1600" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> list1  <span class="co"># 同じリストに名札を2つ貼った状態</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>list1.append(<span class="dv">4</span>)  <span class="co"># list1経由で中身を変更</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(list2)  <span class="co"># [1, 2, 3, 4] になってしまう！</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 3, 4]</code></pre>
+</div>
+</div>
+<p>視覚化すると、名札を二つ付けるので、</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/2026-09-29 194731.png" class="img-fluid figure-img"></p>
+<figcaption>list1 = list2の状態</figcaption>
+</figure>
+</div>
+<p>そのあとに、list1.append(4) してしまうと、</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/2026-09-29 195027.png" class="img-fluid figure-img"></p>
+<figcaption>list1.append(4)を実行</figcaption>
+</figure>
+</div>
+<p>list1だけを変更したのにもかかわらず、list2も変わる。 list2 は何も触っていないのに増えてしまうのである。</p>
+<p><code>list</code>　<code>dict</code>　<code>set</code></p>
+<p>この３つは中身を書き換える操作を行うと 同じオブジェクトが変更される事故の元である。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>補足　メモリの話
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>プログラムを動かすとき、Pythonは「作業机（メモリ）の上にデータを置くスペース」を確保する。</p>
+<p><strong>データを作る</strong>　例: <code>10</code> という数値を机の上（メモリ）に置く。</p>
+<p><strong>住所（アドレス）がつく</strong>　机の上にはマス目（番地）があり、「机の右から3番目、上から5番目」のように場所が決まる。</p>
+<p><strong>変数名（名札）を貼る</strong> 　人間が「番地：0x7ffee4…」と覚えるのは無理なので、そこに<code>a</code>という分かりやすい名札を貼る。</p>
+<p>Pythonの場合は、変数分のメモリの場所を自動的に確保・不要となったら開放する。</p>
+</div>
+</div>
+<p>基本文法は、次ページでやることとする。</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
