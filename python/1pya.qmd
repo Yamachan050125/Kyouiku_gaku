@@ -1,0 +1,17 @@
+---
+title: "第１講ー２　基本文法"
+subtitle: "Python勉強会"
+author: Yamato Fujii
+format: 
+  html: 
+    toc: true
+    number-sections: false
+lang: ja
+---
+
+## 
+
+
+
+
+

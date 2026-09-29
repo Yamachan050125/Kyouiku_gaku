@@ -1,0 +1,14 @@
+---
+title: "Python勉強会 資料置き場"
+format: 
+  html: 
+    toc: true
+    number-sections: false
+lang: ja
+---
+
+このサイトは、Python勉強会の資料置き場です。
+
+[第１講ー１　Pythonの仕組み メモリの取り方](1py.qmd)
+
+[第１講ー２　基本文法](1pya.qmd)
