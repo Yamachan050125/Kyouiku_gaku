@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
 }</code></pre>
 <p>長すぎる。でも、Pythonの場合、</p>
-<div id="6d2f7e3f" class="cell" data-execution_count="1">
+<div id="f80c749f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hallo World!"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hallo World!</code></pre>
@@ -288,20 +288,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="pythonの変数は箱ではなく名札">Pythonの変数は箱ではなく名札</h3>
 <p>Pythonにおけるすべてのデータは<strong>オブジェクト</strong>である。ここが肝で、CやJavaだと<strong>変数＝データを保管する箱</strong>なのだが、Pythonにおいては、変数はオブジェクトなのでただの<strong>名札</strong>なのである。</p>
 <p>例えば</p>
-<div id="8396db83" class="cell" data-execution_count="2">
+<div id="9e000bff" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 10というオブジェクトを作り、aという名札を貼る</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>メモリ上にまず「10というオブジェクト（実体）」が作られ、そこに「a」という名札を貼り付ける（参照する）。</p>
 <p>変数名はそれに貼られたタグに過ぎない。つまり、<strong>名札を二つ以上つけられる</strong>のである。</p>
-<div id="e357a1f3" class="cell" data-execution_count="3">
+<div id="25f441d4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(a)) </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(b)) </span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1984823101136
-1984823101136</code></pre>
+<pre><code>2286235354800
+2286235354800</code></pre>
 </div>
 </div>
 <p>↖数値が同じになっているはずだ。</p>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="問題点">問題点</h3>
 <p>これによって発生する問題が、<strong>中身を直接書き換えられるデータ型の場合に、他の変数まで連動して書き換わってしまう</strong>問題である。</p>
 <p>数値や文字列は書き変わらないようになっている。つまり、<strong>数値や文字列への名札は一個しかつけられない</strong>状態にある。そのため、この場合は事故にはならない。</p>
-<div id="3cb00715" class="cell" data-execution_count="4">
+<div id="baac6ac4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">20</span>  <span class="co"># xに20を代入（xの名札を別の「20」に貼り替えただけ）</span></span>
@@ -324,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>int</code>　<code>float</code>　<code>str</code>　<code>tuple</code>　<code>frozenset</code></p>
 <p>以上は、変わるように見えて実際には新しいオブジェクトを生成しているだけ。</p>
 <p>しかし、<strong>リストや辞書は書き変わる。</strong></p>
-<div id="64da1600" class="cell" data-execution_count="5">
+<div id="529ab155" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> list1  <span class="co"># 同じリストに名札を2つ貼った状態</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
